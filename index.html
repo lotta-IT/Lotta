@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ULTRA BIO 4</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:Arial;
+    background:#05070d;
+    cursor:none;
+}
+
+/* ===== 3D BACKGROUND ===== */
+.bg{
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255,0,255,0.15), transparent 30%);
+    animation: move 10s infinite linear;
+}
+
+@keyframes move{
+    0%{transform:translate(-10%,-10%) scale(1);}
+    50%{transform:translate(10%,10%) scale(1.1);}
+    100%{transform:translate(-10%,-10%) scale(1);}
+}
+
+/* ===== CARD ===== */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:340px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(10,12,20,0.85);
+    border:1px solid cyan;
+    box-shadow:0 0 30px cyan;
+    text-align:center;
+    backdrop-filter: blur(12px);
+}
+
+/* AVATAR */
+.avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border:2px solid cyan;
+    box-shadow:0 0 15px cyan;
+}
+
+/* NAME */
+h1{
+    color:cyan;
+    margin:10px 0;
+    text-shadow:0 0 10px cyan;
+}
+
+/* TYPE TEXT */
+#type{
+    color:#9aa4b2;
+    font-size:13px;
+    height:20px;
+}
+
+/* STATUS */
+.status{
+    margin-top:10px;
+    font-size:12px;
+    color:#00ff88;
+}
+
+/* LINKS */
+a{
+    display:block;
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.2s;
+}
+
+a:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 10px cyan;
+}
+
+/* BUTTON */
+button{
+    margin-top:12px;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:cyan;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* CURSOR */
+.cursor{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:cyan;
+    border-radius:50%;
+    pointer-events:none;
+    box-shadow:0 0 15px cyan;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+<img class="avatar" src="avatar.jpg">
+
+<h1>DE Lotta</h1>
+
+<div id="type"></div>
+
+<div class="status">🟢 ONLINE</div>
+
+<a href="https://t.me/mcLotta">Telegram</a>
+<a href="https://discord.com/users/mclotta">Discord</a>
+
+<button onclick="hire()">💰 Hire me</button>
+
+</div>
+
+<div class="cursor" id="cursor"></div>
+
+<script>
+
+/* MUSIC START */
+window.onload = () => {
+    let music = document.getElementById("music");
+    music.volume = 0.4;
+    music.play().catch(()=>{});
+}
+
+/* TYPE TEXT */
+let text = "developer • student • building future";
+let i = 0;
+
+function typing(){
+    if(i < text.length){
+        document.getElementById("type").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 60);
+    }
+}
+typing();
+
+/* HIRE BUTTON */
+function hire(){
+    alert("DM me on Telegram 💬");
+}
+
+/* CUSTOM CURSOR */
+document.addEventListener("mousemove", (e)=>{
+    let c = document.getElementById("cursor");
+    c.style.left = e.pageX + "px";
+    c.style.top = e.pageY + "px";
+});
+
+/* CLICK SOUND */
+document.addEventListener("click", ()=>{
+    let s = new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
+    s.volume = 0.2;
+    s.play();
+});
+
+</script>
+
+</body>
+</html>
